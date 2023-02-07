@@ -49,7 +49,7 @@ Later, as we developed different sections of the page and started testing its' a
 ## 4. Use various tools to check that our website meets accessibility criteria
 Besides running regular *lighthouse* reports, we frequently tested the usability of the page by navigating it with screen reader on and by using only the keyboard to interact with it.
 
-![screenshot of the scoring from a lighthouse report on accessibility for the ZanyMen page](img/screenshot__lighthouse.png)
+![screenshot of the scoring from a lighthouse report on accessibility for the ZanyMen page](/img/screenshot__lighthouse.png)
 
 ## 5. Use CSS media queries to ensure our content is always presented effectively on screens of different sizes
 *In this example*, media queries are used to define the behaviour of the page in larger screens, since the development of the page was done using a mobile-first approach.
@@ -105,7 +105,7 @@ In this case, it was achieved by setting up CSS fundamentals which we then appli
 
 ## 9. Use CSS Grid to style children in two-direction layout
 
-![grid template used for gallery display in ZanyMen webpage project](img/screenshot__grid.png)
+![grid template used for gallery display in ZanyMen webpage project](/img/screenshot__grid.png)
 *In this example*, a grid was set up to serve as an image gallery. 
 CSS fundamentals were set up so allow some elements to occupy two columns or two rows, instead of one as per their standard behaviour.
 This created the layout displayed.
@@ -114,7 +114,7 @@ This created the layout displayed.
 All commits were connected directly to issues raised within the project. 
 A look through the history of commits, or a list of the closed issues, tells us a story of the challenges met while developing the page. 
 
-![screenshot of a list of issues closed in the ZanyMen project](img/screenshot__commit.png)
+![screenshot of a list of issues closed in the ZanyMen project](/img/screenshot__commit.png)
 
 ## 11. Use the appropriate input types in HTML forms for gathering different types of information
 
