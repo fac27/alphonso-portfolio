@@ -2,8 +2,6 @@
 The importance of deliberate use of semantic HTML elements was highlighted in the first project of the bootcamp. Changes that might not have otherwise affected the functionality of the page can greatly impact its accessibility and also the ease in reading for other developers or ourselves in the future.
 
 ```js
-<div tabindex="0" aria-labelledby="gallery-heading" id="gallery-grid"
-            class="grid">
             <figure tabindex="0" class="gallery-grid--frame gallery-grid--frame__long">
                 <img aria-describedby="fig1-caption" class="gallery-grid--image"
                     src="https://www.nakedlime.com/sites/default/media/image/RS_tube_man.png"
@@ -44,16 +42,37 @@ The page was tested by navigating without a mouse and with the screen reader on.
 To solve this, the ```aria-label```, ```aria-expanded``` and ```aria-activedescendant``` attributes were added. The comments displayed in the snipped above were added for clarity in this document.
 
 ## 3. Ensure our UI has sufficient colour contrast so that everyone can perceive it comfortably
+At the very start of the project we agreed the page would have a minimal look, with only up three colours for its scheme, and set to work with a basic combination of two complementary colours and one more colour, analogous to the first.
+
+Later, as we developed different sections of the page and started testing its' accessibility, we revisited the colour scheme and updated the values of the variables being used to guarantee good accessibility and a pleasing look to the page.
 
 ## 4. Use various tools to check that our website meets accessibility criteria
+Besides running regular *lighthouse* reports, we frequently tested the usability of the page by navigating it with screen reader on and by using only the keyboard to interact with it.
+
+![screenshot of the scoring from a lighthouse report on accessibility for the ZanyMen page](./img/screenshot__lighthouse.png)
 
 ## 5. Use CSS media queries to ensure our content is always presented effectively on screens of different sizes
+*In this example*, media queries are used to define the behaviour of the page in larger screens, since the development of the page was done using a mobile-first approach.
+
+```CSS
+@media screen and (min-width: 520px) {
+
+  nav ul a:hover {
+    text-decoration: underline;
+    color: var(--color-highlight);
+  }
+  
+};
+```
+*This example* also relates to **learning point #6**
 
 ## 6. Demonstrate a mobile-first approach to building a website
+Media queries in this project define the behaviour of the page when a screen reaches a set minimum size. In the example below, the behaviour of links in the navigation bar is set in order to let desktop users know they are clickable.
+
+These links behave differently in screens of a smaller size (their original set behaviour) because they assume a mobile device is being used, on which the user will not be hovering a mouse over the links to recognise this behaviour.
 
 ## 7. Use CSS variables to apply repeated colours to HTML elements
 Using variables to style our page allowed for easier and more effective adjustments to be made as the content changed in response to challenges.
-At the very start of the project we agreed the page would have a minimal look, with only up three colours for its scheme, and set to work with a basic combination of two complementary colours and one more colour, analogous to the first. Later, as we developed different sections of the page and started testing its' accessibility, we revisited the colour scheme and updated the values of the variables being used
 
 ```CSS
 :root {
@@ -64,13 +83,38 @@ At the very start of the project we agreed the page would have a minimal look, w
   --color-black: #0f0f1b;           /*slightly 'off-black' colour to avoid straining the eyes in very high contrast*/
 }
 ```
-Comments displayed were added for clarity in this document.
+*This example* also relates to **learning point 3**. Comments displayed were added for clarity in this document.
 
 ## 8. Use CSS Flexbox to style children in a single-direction layout (ie a row or a column)
+Flexbox was used in different sections of the ZanyMen webpage project.
+In this case, it was achieved by setting up CSS fundamentals which we then applied to elements as needed.
+
+```CSS
+.flex {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+```
 
 ## 9. Use CSS Grid to style children in two-direction layout
 
+![grid template used for gallery display in ZanyMen webpage project](./img/screenshot__grid.png)
+*In this example*, a grid was set up to serve as an image gallery. 
+CSS fundamentals were set up so allow some elements to occupy two columns or two rows, instead of one as per their standard behaviour.
+This created the layout displayed.
+
 ## 10. Ensure our Git commit history tells a coherent story
+All commits were connected directly to issues raised within the project. 
+A look through the history of commits, or a list of the closed issues, tells us a story of the challenges met while developing the page. 
+
+![screenshot of a list of issues closed in the ZanyMen project](./img/screenshot__commit.png)
 
 ## 11. Use the appropriate input types in HTML forms for gathering different types of information
 
