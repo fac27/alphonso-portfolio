@@ -75,25 +75,34 @@ Comments displayed were added for clarity in this document.
 ## 11. Use the appropriate input types in HTML forms for gathering different types of information
 
 ```HTML
-            <form id="contact-form" class="contact__form active__form flex column stack-m"
-                aria-label="contact form" tabindex="0">
+            <form id="order-form" class="order__form flex column stack-m"
+                aria-label="order form" tabindex="0">
                         
-                <div class="inputs flex column stack-s">
-                    <label for="name__contact">Name</label>
-                    <input type="text" name="name__contact" id="name__contact"
+                    <label for="name__order">Name</label>
+                    <input type="text" name="name__order" id="name__order"
                         placeholder="e.g James Kirk" required />
                             
-                    <label for="email__contact">Email</label>
-                    <input type="email" name="email__contact" id="email__contact"
+                    <label for="email__order">Email</label>
+                    <input type="email" name="email__order" id="email__order"
                         placeholder="e.g sulu@starfleet.com" required />
-                    <label for="message">Message</label>
-                    <textarea name="message" id="message" cols="30" rows="8"
-                        placeholder="your message here.." required></textarea>
-                </div>
 
-                <div class="buttons flex row gap-m">
+                    <label for="models">Choose a model:</label>
+                    <select name="models" id="models">
+                        <option value="" disabled selected hidden></option>
+                        <option value="red-tube-man">Classic Red Tube Man</option>
+                        <option value="red-tube-scarecrow">Red Tube Scarecrow</option>
+                        <option value="yellow-destroyer">Yellow Destroyer Man</option>
+                        <option value="orange-legged">Orange Legged Man</option>
+                        <option value="tiny-desk-man">Tiny Desk Tube Man</option>
+                        <option value="red-four-limbed">Red Four Limbed Red Man</option>
+                        <option value="living-tube-man">Living Tube Man</option>
+                    </select>
+
+                    <label for="amount">Amount</label>
+                    <input type="number" min="1" max="1000" name="amount" id="amount"
+                        required />
+
                     <button type="reset">Reset</button>
                     <button type="submit">Submit</button>
-                </div>
             </form>
 ```
