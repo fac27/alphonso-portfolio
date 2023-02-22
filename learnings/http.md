@@ -1,6 +1,33 @@
 ## 1. Write code that executes asynchronously
-example
+In the HTTP project we worked with two separate APIs to create a mashup of information that users could search through according to their specifications.
+This meant relying on various fetch calls, often using urls retrieved elsewhere in the users' search.
+
+```javascript
+const generateScores = async (url) => {
+  let result = await (await fetch(url)).json();
+  let scores = await result.categories;
+}
+```
+*In this example* we retrieve a url from a previous user search and await a fetch of the API. Different values returned are stored in variables for later use.
+
 ## 2. Use callbacks to access values that aren’t available synchronously
+**generateScores**, shown in the point above, is then called within another function to allow the user to see further data if and when their search requires it.
+
+```javascript
+const printCityDetails = async (url) => {
+  let city = await (await fetch(url)).json();
+  canvas.innerHTML = "";
+  
+  printHTML(`
+    <div id='score-card'>
+      <h2 class='city__entry--title'>${city["full_name"]}</h2>
+      <p class='city__entry--subtitle'>Mayor: ${city.mayor}</p>
+    </div>
+  `).then((element) => canvas.appendChild(element));
+    
+  generateScores(`${url}scores`);
+}
+```
 
 ## 3. Use promises to access values that aren’t available synchronously
 
