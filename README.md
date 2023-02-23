@@ -6,5 +6,5 @@ The links below outline three subjects explored during the bootcamp and, by foll
 
 ## Learning subjects
 1. 🔣 [Markup](/learnings/markup.md)
-1. 🌐 [HTTP](/learnings/http.md)
-1. 🐜 [Testing](/learnings/testing.md)
+1. 🌐 [HTTP](/learnings/http.md) **in progress**
+1. 🐜 [Testing](/learnings/testing.md) **in progress**
