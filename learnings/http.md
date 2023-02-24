@@ -44,7 +44,25 @@ const printCityDetails = async (url) => {
 ## 9. Add and remove DOM nodes to change the content on the page
 
 ## 10. Toggle the classes applied to DOM nodes to change their CSS properties
+When displaying the results of the user's search we created a header that shows the city's safety rating.
+To bring this rating to life, we added a function that dictates the color of the rating for the user.
 
+```javascript
+    let safetySpan = document.querySelector('.canvas__city-safety-score');
+    let safetySpanScore = Math.floor(score.score_out_of_10);
+        
+    if(safetySpanScore >= 0 && safetySpanScore <= 4){
+      safetySpan.classList.add('canvas__city-safety-score--red');
+    } else if(safetySpanScore >= 5 && safetySpanScore <= 7) {
+      safetySpan.classList.add('canvas__city-safety-score--yellow');
+      } else {
+        safetySpan.classList.add('canvas__city-safety-score--green');
+      }
+```
+This was achieved by applying a different modifier class to the relevant ```<span>``` element, dependent on the value contained within.
+
+This was the final result:
+![screenshot of safety rating display in Spot Check](/imgs/spotcheck-safety-display.png)
 ## 11. Use consistent layout and spacing
 
 ## 12. Follow a spacing guideline to give our app a consistent feel
