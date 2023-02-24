@@ -62,7 +62,8 @@ To bring this rating to life, we added a function that dictates the color of the
 This was achieved by applying a different modifier class to the relevant ```<span>``` element, dependent on the value contained within.
 
 This was the final result:
-![screenshot of safety rating display in Spot Check](/imgs/spotcheck-safety-display.png)
+
+![screenshot of safety rating display in Spot Check](/img/screenshot__safety-display--spotcheck.png)
 ## 11. Use consistent layout and spacing
 
 ## 12. Follow a spacing guideline to give our app a consistent feel
