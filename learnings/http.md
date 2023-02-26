@@ -30,15 +30,54 @@ const printCityDetails = async (url) => {
 ```
 
 ## 3. Use promises to access values that aren’t available synchronously
+The initial search in Spot Check may return various cities, but to obtain the data available for any of the search results we need to fetch it from a new url provided in the previous API call.
 
+The function below receives the url provided within the object provided within the object returned form the first fetch and then makes a new API call with it.
+
+```javascript
+const printCityDetails = async (url) => {
+  let city = await (await fetch(url)).json();
+
+  //further code is omitted in this example
+}
+```
+*This example* is also relevant for **learning point #4**
 ## 4. Use the fetch method to make HTTP requests and receive responses
+The fetch method is called for input provided by the user via callbacks like the one seen below.
+
+```javascript
+const fetchTeleport = async (city) => {
+  let result = await (
+    await fetch(`https://api.teleport.org/api/cities/?search=${city}`)
+  ).json();
+  
+  let matches = await result._embedded["city:search-results"];
+  
+  return matches;
+};
+```
 
 ## 5. Configure the options argument of the fetch method to make GET and POST requests
 
 ## 6. Use the map array method to create a new array containing new values
 
 ## 7. Use the filter array method to create a new array with certain values removed
+Searching a city may return several results. For example, searching for 'London' would return data for 'London, United Kingdom' and 'London, Ontario, Canada'.
 
+We filter the list of results to include only cities within the UK, since the Police API only has information relevant to the United Kingdom.
+
+```javascript
+fetchTeleport(searchInput).then((matches) => {
+  let ukRegex = new RegExp(/(United Kingdom)/);
+  let filteredMatches = Object.values(matches).filter(match => ukRegex.test(match.matching_full_name));
+
+  filteredMatches.forEach(match => {
+    if (ukRegex.test(match["matching_full_name"])) {
+      printSearchResults(match);
+    }
+  });
+}
+```
 ## 8. Access DOM nodes using a variety of selectors
 
 ## 9. Add and remove DOM nodes to change the content on the page
