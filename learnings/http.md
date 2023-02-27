@@ -81,7 +81,40 @@ fetchTeleport(searchInput).then((matches) => {
 ## 8. Access DOM nodes using a variety of selectors
 
 ## 9. Add and remove DOM nodes to change the content on the page
+The base HTML for this project is very bare and most elements are added, adapted or removed from the page via our javascript.
+For this, we used two different methods.
 
+```javascript
+    let crimeScoreCard = document.createElement("div");
+    crimeScoreCard.classList.add("canvas__score-card", 'canvas__score-card--crime');
+    canvas.appendChild(crimeScoreCard);
+```
+*In this example*, an element is created using typical DOM manipulation. In this particular instance the function goes on to iterate through the data points handed to it asynchronously before collecting them to populate different elements on the page. We only needed to create the *crimeScoreCard* element so that other elements could later on be appended to it.
+
+But sometimes we create a higher number of elements, potentially with intricate structures connecting them. For that, we use the second method.
+
+```javascript
+const printHTML = async (data) => {
+  const template = document.createElement("template");
+  template.innerHTML = data.trim();
+  return template.content.firstChild;
+};
+```
+*This function* allows us to feed a string into it that will be returned as a template element, which we can then populate and append to the page as needed. When used in conjunction with template literals, this becomes quite powerful.
+
+```javascript
+printHTML(`
+    <div class='canvas__search-header'>
+      <h2 class='city__search-header--title'>
+        ${city["full_name"]}
+      </h2>
+      <p class='city__search-header--subtitle'>
+        Mayor: ${city.mayor}
+      </p>
+    </div>
+`).then((element) => canvas.appendChild(element));
+```
+*In this example*, the printHTML() function show above was used to create a ```<div>``` that will display on the page the name of the city searched and the name of its Mayor. The use of template literals lets us type the html elements directly into our code, making it easier to read and allowing us to append all elements as one, since the ```<h2>``` and ```<p>``` are nested within a ```<div>```, which is the template returned to us.
 ## 10. Toggle the classes applied to DOM nodes to change their CSS properties
 When displaying the results of the user's search we created a header that shows the city's safety rating.
 To bring this rating to life, we added a function that dictates the color of the rating for the user.
@@ -110,3 +143,12 @@ This was the final result:
 ## 13. Debug client side JS in our web browser
 
 ## 14. Use console.log() to help us debug our code
+```javascript
+try {
+    callPolice(lat, lon).then(printPoliceResults);
+} catch {
+    console.error(`callPolice did not find a reference for this city. the following url was fed into the call ${url}`);
+    window.alert('No data available for that city');
+}
+```
+*In this example*, we incorporated debugging and feedback for the user into our error handling. Since the function relies on multiple fetch calls being made, which could all fail for different reasons, we alert the user in this ```catch``` that *'no data is available for that city'* but ```console.error()``` more detail on which call failed to help us review and debug any errors.
