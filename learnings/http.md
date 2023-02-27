@@ -80,6 +80,19 @@ fetchTeleport(searchInput).then((matches) => {
 ```
 ## 8. Access DOM nodes using a variety of selectors
 
+```javascript
+const canvas = document.querySelector("#canvas");
+const crimeOccurrences = document.querySelector("#crime-occurrences");
+const gifFig = document.querySelector("#gif-load");
+```
+*In this example*, three different elements are stored into variables using ```.querySelector()```. These elements are unique in our page so they are accessed through their ID attribute. 
+
+Other ways to access elements would be:
+- ```.getElementById()```, which would give us the same result for this case,
+- ```.getElementsByClassName()```, which would produce an array of all elements with the same class and could easily be used to iterate through them
+- ```.querySelectorAll()```, which would produce an array, but would allow us to target a type of element rather than their class attribute 
+  - i.e.: ```document.querySelectorAll('input[type=text]')``` would access all text input fields
+
 ## 9. Add and remove DOM nodes to change the content on the page
 The base HTML for this project is very bare and most elements are added, adapted or removed from the page via our javascript.
 For this, we used two different methods.
