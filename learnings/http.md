@@ -58,7 +58,22 @@ const fetchTeleport = async (city) => {
 ```
 
 ## 5. Configure the options argument of the fetch method to make GET and POST requests
+Due to the nature of the APIs used in this project we did not allow the user to post data. However, the function below would allow for this.
 
+```javascript
+const addToTeleport = async (input) => {
+  let result = await (
+    await fetch(`https://api.teleport.org/api/cities/?search=${city}`,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(input)
+    });
+```
+*In this example*, the city entered by the user (after validation and handling) would be posted throught the ```addToTeleport()``` call.
 ## 6. Use the map array method to create a new array containing new values
 ```javascript
 let scores = result.map(score => `{field: ${score.name}, Score: ${score.score_out_of_10}}`);
