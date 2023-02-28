@@ -154,9 +154,10 @@ This was the final result:
 
 ![screenshot of safety rating display in Spot Check](/img/screenshot__safety-display--spotcheck.png)
 ## 11. Use consistent layout and spacing
+Throughout Spot Check, css fundamentals are used to create a consistent layout and spacing in the page.
 
-## 12. Follow a spacing guideline to give our app a consistent feel
-
+![screenshot of the layout of Spot Check as search results are displayed](/img/screenshot__layout--spotcheck.png)
+*In this example*, three boxes display the results for a city search. They are coloured using variables in css where the colourscheme for the page has been saved and the spaces between them and between the elements inside each box is dictated using css fundamentals. For example, both boxes on the bottom have the class ```.stack-sm``` to ensure the information stored inside is shown in pleasing symmetry.
 ## 13. Debug client side JS in our web browser
 The use of ```console.log()``` and other console actions is covered in learning point #14, but in order to investigate and solve more intricate issues we can insert break points in the browser.
 
