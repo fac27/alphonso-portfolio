@@ -60,7 +60,11 @@ const fetchTeleport = async (city) => {
 ## 5. Configure the options argument of the fetch method to make GET and POST requests
 
 ## 6. Use the map array method to create a new array containing new values
-
+```javascript
+let scores = result.map(score => `{field: ${score.name}, Score: ${score.score_out_of_10}}`);
+```
+*In this example*, the variable 'scores' stores a mapped version of the array of objects returned in a previous ```.fetch()``` call.
+The shortened objects, with their keys renamed for ease of read, are later used to print data onto the page, similarly to what is shown in the learning outcomes #2 and #9.
 ## 7. Use the filter array method to create a new array with certain values removed
 Searching a city may return several results. For example, searching for 'London' would return data for 'London, United Kingdom' and 'London, Ontario, Canada'.
 
@@ -154,7 +158,12 @@ This was the final result:
 ## 12. Follow a spacing guideline to give our app a consistent feel
 
 ## 13. Debug client side JS in our web browser
+The use of ```console.log()``` and other console actions is covered in learning point #14, but in order to investigate and solve more intricate issues we can insert break points in the browser.
 
+![screenshot of the sources tool in google chrome with the code stopped at a break point](/img/screenshot__debugging--spotcheck.png)
+*In this example*, we can see the code for Spot Check stopped where ```printCityDetails()``` was called. The code we can see here displayed has been timestamped to when the break point was reached. That means that, by hovering on the variables declared in our code, we can see the values those variables have received at that point.
+
+In this case, we can see that the variables 'lat' and 'lon' have been assigned values from a previous ```.fetch()``` call, as intended. Here there is no bug, but if the information we expected were not being returned this would be a powerful way to explore the reasons for it and pinpoint at what point our logic was failing.
 ## 14. Use console.log() to help us debug our code
 ```javascript
 try {
