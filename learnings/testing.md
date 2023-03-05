@@ -1,7 +1,23 @@
 ## 1. Check that passing a given input into our tests returns the expected output
 
 ## 2. Write tests to mimic the behaviour of a user performing different actions
+```javascript
+test('newItem() renders a new task element on the page', () => {
+    newItem();
+    let expected = 2; //the new element + an empty one from initialising the page
+    let output = document.querySelectorAll('.item__description').length;
 
+    isEqual(expected, output);
+    renderTaskList();
+});
+```
+*In this example*, the test shown renders onto the page a new Task List template.
+On startup, the page should display the entire task list stored locally and an extra task template element to prompt the user to enter new tasks.
+The test is deployed when the storage is empty, so we expect 2 items to be displayed at the end. The item created during the test, and the empty template.
+At the end of the test, we render the stored task list again, clearing the output of this test once we have recorded it's result.
+
+This is the message logged at the end of a successful task:
+![screenshot of a successful test of the function newItem()](/img/screenshot__successful-test--tUdo.png)
 ## 3. Write testable, modular functions
 
 ## 4. Write functions that add, remove or modify DOM nodes
