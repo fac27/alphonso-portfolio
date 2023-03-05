@@ -17,7 +17,7 @@ The test is deployed when the storage is empty, so we expect 2 items to be displ
 At the end of the test, we render the stored task list again, clearing the output of this test once we have recorded it's result.
 
 This is the message logged at the end of a successful task:
-![screenshot of a successful test of the function newItem()](/img/screenshot__successful-test--tUdo.png)
+![screenshot of a successful test of the function newItem()](/img/screenshot__pass-test--tUdo.png)
 ## 3. Write testable, modular functions
 
 ## 4. Write functions that add, remove or modify DOM nodes
