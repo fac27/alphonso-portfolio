@@ -1,4 +1,23 @@
 ## 1. Check that passing a given input into our tests returns the expected output
+```javascript
+ test('typing "/delete" into an item will remove the associated task from storage', () => {
+    let expected = 0;
+
+    let testTask = document.querySelector('.test-task');
+    testTask.value += ' /delete';
+    testTask.dispatchEvent(pressEnter);
+
+    let output = document.querySelectorAll('.test-task').length;
+
+    isEqual(expected,output, 'deleted a test task');
+};
+```
+*In this example*, the test targets a test item (created during a previous test) and adds the input '/delete' to it's text content before pressing 'Enter'.
+We expect this to delete the item.
+
+At this point, the test task should be the only task on the page, so we expect the length of the html element list captured at the end to be 0, which is the fixed value assigned to the variable 'expected'.
+
+A separate test tracks whether the number of items shown on the page matches the number of items in storage, but this test is only checking whether an item is removed from the page when we type '/delete'.
 
 ## 2. Write tests to mimic the behaviour of a user performing different actions
 ```javascript
