@@ -72,6 +72,32 @@ function renderTaskList() {
 Comments displayed in the code were added for detail in this document.
 
 ## 5. Apply event listeners to HTML form elements
+When a new task is created or edited by the user, tUdo will update the stored task list and render its updated version onto the page.
+Specific event listeners are added to the newly rendered items to allow the user to continue interacting with their task list.
+
+```javascript
+function listenForKeyStrokes() {
+ let tasksOnPage = Array.from(
+    document.querySelectorAll(".item__description")
+  ).splice(1);
+        
+ let typeToDelete = new RegExp(/(\/delete)$/);
+ let typeToComplete = new RegExp(/(\/done)$/);
+ let typeToUntick = new RegExp(/(\/pending)$/);
+        
+ tasksOnPage.forEach((task) => {
+  task.addEventListener("keyup", (e) => {
+   if (e.key !== "Enter") return;
+   if (typeToDelete.test(task.value)) return deleteItem(task);
+   if (typeToComplete.test(task.value)) return tickItem(task);
+   if (typeToUntick.test(task.value)) return untickItem(task);
+   editItem(task);
+  });
+ });
+};
+```
+*In this example*, the function ```listenForKeyStrokes()``` iterates through all tasks displayed on the page and adds an event listener to allow the user to enter new changes with different text entries.
+This is function is then called when the list is rendered onto the page.
 
 ## 6. Use scope to control what variables are accessible inside functions and blocks
 
