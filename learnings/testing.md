@@ -1,3 +1,8 @@
+# Project Goal
+For this project we were tasked with building a functional To-do list using a TDD approach.<br>
+[tUdo](https://github.com/fac27/tUdo) is a dynamic task tracker that facilitates simple navigation using clear keyboard commands to add, edit and delete tasks.
+We built our own testing library while developing this page.
+
 ## 1. Check that passing a given input into our tests returns the expected output
 ```javascript
  test('typing "/delete" into an item will remove the associated task from storage', () => {
