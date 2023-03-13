@@ -1,3 +1,7 @@
+# Project Goal
+For this project we were tasked with developing a page that could use at least two separate APIs to create a mashup of information for the user.
+[Spot Check](https://github.com/fac27/Spot-check) uses data from Teleport API and UK Police Data API to allow users to search any area in the UK of their choice and view information on the quality of living and safety index of that area.
+
 ## 1. Write code that executes asynchronously
 In the HTTP project we worked with two separate APIs to create a mashup of information that users could search through according to their specifications.
 This meant relying on various fetch calls, often using urls retrieved elsewhere in the users' search.
