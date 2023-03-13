@@ -1,19 +1,30 @@
+#Project Goal
+In this project we were tasked with creating a project page for a fictious company with the main focus of the project being the accessibility of the page.
+[zanyMen](https://github.com/fac27/ZanyMen) was developed to be accessible to screen-readers and mouseless navigation.
+For this, and the following projects, we used a mobile-first approach.
+
 ## 1. Structure a site using semantic HTML to aid accessibility
 The importance of deliberate use of semantic HTML elements was highlighted in the first project of the bootcamp. Changes that might not have otherwise affected the functionality of the page can greatly impact its accessibility and also the ease in reading for other developers or ourselves in the future.
 
 ```js
-            <figure tabindex="0" class="gallery-grid--frame gallery-grid--frame__long">
-                <img aria-describedby="fig1-caption" class="gallery-grid--image"
-                    src="https://www.nakedlime.com/sites/default/media/image/RS_tube_man.png"
-                    alt="classic red tube man model" />
-                <figcaption class="gallery-grid--info stack-m">
-                    <h3 class="center">Classic Red Tube Man</h3>
-                    <p id="fig1-caption" class="center">
-                        Everyones favourite arm-flailing tube man is the feature that will
-                        turn your business parking lot into a classic.
-                    </p>
-                </figcaption>
-            </figure>
+<figure 
+ tabindex="0" 
+ class="gallery-grid--frame gallery-grid--frame__long"
+>
+ <img 
+  aria-describedby="fig1-caption" 
+  class="gallery-grid--image"
+  src="https://www.nakedlime.com/sites/default/media/image/RS_tube_man.png"
+  alt="classic red tube man model" 
+ />
+  <figcaption class="gallery-grid--info stack-m">
+    <h3 class="center">Classic Red Tube Man</h3>
+    <p id="fig1-caption" class="center">
+      Everyones favourite arm-flailing tube man is the feature that will
+      turn your business parking lot into a classic.
+    </p>
+  </figcaption>
+</figure>
 ```
 *In this example*, using a ```<figure>``` element was a simple change from the initial inclination to use a ```<div>``` element but it creates a clearer understanding of the intended function of this element with its' semantics, specially once considered in conjunction with the nested ```<figcaption>``` element.
 
