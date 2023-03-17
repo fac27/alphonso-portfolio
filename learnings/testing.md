@@ -43,7 +43,54 @@ At the end of the test, we render the stored task list again, clearing the outpu
 This is the message logged at the end of a successful task:
 ![screenshot of a successful test of the function newItem()](/img/screenshot__pass-test--tUdo.png)
 ## 3. Write testable, modular functions
+The codebase for tUdo utilises small functions designed to be easily readable and to behave in a predictable manner.
 
+```javascript
+function deleteItem(edited) {
+  let items = Array.from(
+    document.querySelectorAll(".item__description")    // splice() removes the first Item displayed on the page,
+  ).splice(1);                                         // which is epmty as a prompt for user behaviour
+  let index = items.indexOf(edited);         
+  
+  taskCollection.deleteTask(index);
+  renderTaskList();
+}
+```
+*In this example*, the function ```deleteItem()``` targets an array of all tasks displayed on the page and finds the index of the item being edited. 
+Because of the modular nature of the code, we know this will always match the index of the corresponding object in local storage. 
+That means we can then call the method ```deleteTask()``` to delete that object and, finally, ```renderTaskList()``` again.
+Comments were added for clarity in this document.
+
+Our testing library also helped confirm that the behaviour of this function remains the same throughout the development of the page.
+```javascript
+test('typing "/delete" into a task item will remove that task from the page', () => {
+let expected = 0;
+
+    let testTask = document.querySelector('.test-task');
+    testTask.value += ' /delete';
+    testTask.dispatchEvent(pressEnter);
+
+    let output = document.querySelectorAll('.test-task').length;
+
+    isEqual(expected,output, 'deleted a test task');
+});
+```
+when "/delete" is added to the text input of any task, an event listener calls the function ```deleteItem()```. The test in this example checks that one item has been removed from the page after simulating that user behaviour. This is also relevant for learning points #2 and #4.
+
+A second test checks that, as we make changes to the page, the number of tasks displayed matches the number of task objects in local storage.
+
+```javascript
+test('The number of tasks displayed on the page matches the number of task objects stored locally', () => { 
+    let itemsDisplayed = document.querySelectorAll('.item__description').length;
+    taskCollection.getAllTasksFromStorage();
+    let itemsSaved = taskCollection.allTasks.length;
+        
+    isEqual(itemsDisplayed - 1, itemsSaved, `${itemsDisplayed - 1} out of ${itemsSaved} tasks displayed`);
+    // here, again, one item is 'removed' from the count because one empty task item is always displayed
+    // as a prompt for users to type into
+});
+```
+These tests combined show us that different parts of the code are behaving as expected, to result in the planned features of tUdo.
 ## 4. Write functions that add, remove or modify DOM nodes
 The layout of the to-do list is defined by the users' input.
 To achieve this, our code continuously listens for user behaviour that tells it whether it should:
@@ -59,17 +106,21 @@ function renderTaskList() {
   for (let i = 0; i < currentTaskList.length; i++) {
     let { description, completed: done } = currentTaskList[i];
 
-    newItem();                                                                  // this function returns a template element to show the task
-
+    newItem();
+    // this function returns a template element to show the task
     
-    let taskDescription = allTaskDescriptions[allTaskDescriptions.length - 1]; //the latest template displayed on the page is populated with
-    taskDescription.value = description;                                       //information from the current task object   
-
+    let taskDescription = allTaskDescriptions[allTaskDescriptions.length - 1]; 
+    taskDescription.value = description;                                          
+    //the latest template displayed on the page is populated with
+    //information from the current task object
+    
     let taskDone = allTasksStatus[allTasksStatus.length - 1];
     taskDone.checked = done;
 
-    let newestTask = allTaskDescriptions[0];                                    //the first template on the page, which was left empty,
-    newestTask.focus();                                                         //is focused to prompt new user input
+    let newestTask = allTaskDescriptions[0];                                    
+    newestTask.focus();  
+    //the first template on the page, which was left empty,
+    //is focused to prompt new user input
   }                                                                             
 }
 ```
