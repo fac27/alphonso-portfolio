@@ -156,6 +156,52 @@ function listenForKeyStrokes() {
 This is function is then called when the list is rendered onto the page.
 
 ## 6. Use scope to control what variables are accessible inside functions and blocks
+An event listener monitors changes to all tasks in tUdo and triggers different functions based on the input added to the tasks description field.
+For example, a task can be deleted by typing ```/delete``` in its input field, or it could simply be updated by changing its description input.
+
+These actions are differentiated by their triggers but will consider some of the same information. 
+For example, both actions (deleting or editing the task) require our code to identify the index at which the task is stored, before actioning any changes.
+This action could be performed when the event listener is first triggered.
+
+```javascript
+  let tasksOnPage = Array.from(document.querySelectorAll(".item__description")).splice(1);
+  
+  tasksOnPage.forEach(task => {
+   task.addEventListener("keyup", e => {
+   let index = tasksOnPage.indexOf(task);
+   // theorical example
+   // not actually in our codebase
+}
+```
+However, defining the index at this point would make the codebase unnecessarily verbose and potentially open it up to bugs from fringe cases.
+Instead, the event listener only evaluates the input and then calls the appropriate function to identify and edit the targeted task.
+
+```javascript
+  let tasksOnPage = Array.from(document.querySelectorAll(".item__description")).splice(1);
+
+  tasksOnPage.forEach((task) => {
+    task.addEventListener("keyup", (e) => {
+      if (e.key !== "Enter" || emptyField.test(task.value))return;
+      if (typeToDelete.test(task.value)) return deleteItem(task); // once the iput is processed, the event listener calls the correct action
+      editItem(task);                                             // and feeds the targeted item to the corresponding function
+    });
+  });
+// this code has been edited and abridged
+// for the purpose of this document
+};
+```
+*In this example*, supposing the user has typed ```/delete``` onto the task, the ```deleteItem()``` function is called.
+This function will then evaluate the index of the targeted task item, keeping concerns separated and the code more readable and less prone to error.
+
+```javascript
+function deleteItem(edited) {
+  let items = Array.from(document.querySelectorAll(".item__description")).splice(1);
+  let index = items.indexOf(edited);
+  
+  taskCollection.deleteTask(index);
+  renderTaskList();
+}
+```
 
 ## 7. Use CSS grid to create complex layouts
 
