@@ -206,3 +206,14 @@ function deleteItem(edited) {
 ## 7. Use CSS grid to create complex layouts
 
 ## 8. Use CSS grid to make layouts that adapt to the viewport size
+Tasks created by the user are rendered onto the page using a template element that gets appended to a static ```<div>``` with the ID of #canvas.
+The canvas has a display of grid, separated into 6 columns of equal size and as many rows as necessary, with a defined eight of 2rem.
+These settings allow the elements on the page to maintain a consistent layout as they are printed onto the page, while adapting to varying widths.
+
+```css
+#canvas{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(auto-fill, 2rem);
+}
+```
